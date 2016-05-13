@@ -24,14 +24,33 @@
           var lng = (event.latLng.lng())
           var latlength = Math.floor(lat * 10000000) / 10000000
           var lnglength = Math.floor(lng * 10000000) / 10000000
-          debugger;
+
+          console.log("api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0")
+
         $.ajax({
-          url: '/data_objects',
-          method: 'post',
-          data: "api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0"
-        }).done(function(response){
-          debugger;
+          url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
+          dataType: "json"
+
+        }).then(function(response){
+            document.getElementById("output").innerHTML = response.breezometer_aqi;
+             $.ajax({
+              url: '/data_objects',
+              dataType: 'json',
+              method: 'post',
+              data: {response, "authenticity_token": "<%= form_authenticity_token %>"}
+
+            })
+
+
         })
+
+        // $.ajax({
+        //   url: '/data_objects',
+        //   dataType: 'json',
+        //   method: 'post',
+        //   data: {"key": "api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0", "authenticity_token": "<%= form_authenticity_token %>"}
+        // }).done(function(response){
+        // })
         // post to route
         // create new AQI object
         // display this on screen
@@ -44,5 +63,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
         async defer></script>
+
+        <div id="output">The API request is:</div>
   </body>
 </html>
