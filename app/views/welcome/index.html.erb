@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <style>
@@ -20,25 +19,30 @@
           center: {lat: 44.540, lng: -78.546},
           zoom: 8
         });
-
         google.maps.event.addListener(map, 'click', function(event) {
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
           var latlength = Math.floor(lat * 10000000) / 10000000
           var lnglength = Math.floor(lng * 10000000) / 10000000
-          // lat.toFixedDown(7)
-          // lng.toFixedDown(7)
-        // need to make the decimal 7 digits long
-        // $.ajax({
-          console.log("api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&pkey=c0bfb33a27924f7e95a828abc931d5a0")
-          // url: "api.breezometer/baqi/?lat={lat}&lon={lng}&pkey=c0bfb33a27924f7e95a828abc931d5a0"
-        // })
-
+          debugger;
+        $.ajax({
+          url: '/data_objects',
+          method: 'post',
+          data: "api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0"
+        }).done(function(response){
+          debugger;
+        })
+        // post to route
+        // create new AQI object
+        // display this on screen
         });
       }
     </script>
+    <div id="AQI-container">
+      <!-- show data object -->
+    </div>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
         async defer></script>
   </body>
 </html>
-
