@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="../assets/javascripts/application.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+          center: {lat: 44.540, lng: -78.546},
+          zoom: 8
+        });
+        google.maps.event.addListener(map, 'click', function(event) {
+          var lat = (event.latLng.lat())
+          var lng = (event.latLng.lng())
+          var latlength = Math.floor(lat * 10000000) / 10000000
+          var lnglength = Math.floor(lng * 10000000) / 10000000
+
+          console.log("api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0")
+
+        $.ajax({
+          url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
+          dataType: "json"
+
+        }).then(function(response){
+            document.getElementById("output").innerHTML = response.breezometer_aqi;
+             $.ajax({
+              url: '/data_objects',
+              dataType: 'json',
+              method: 'post',
+              data: {response, "authenticity_token": "<%= form_authenticity_token %>"}
+
+            })
+          })
+        });
+      }
+    </script>
+    <div id="AQI-container">
+      <!-- show data object -->
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
+        async defer></script>
+
+        <div id="output">The API request is:</div>
+  </body>
+</html>
