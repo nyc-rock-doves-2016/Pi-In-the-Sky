@@ -1,0 +1,28 @@
+
+<%=form_for @user do |f| %>
+  <div>
+    <%= f.label :first_name, "First Name" %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= f.label :last_name, "Last Name" %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= f.label :password, "Password" %>
+    <%= f.text_field :password %>
+  </div>
+  <div>
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email %>
+  </div>
+  <div>
+    <%= f.label :phone, "Phone" %>
+    <%= f.phone_field :phone %>
+  </div>
+  <%= f.label :location, "Location" %>
+  <%= f.text_field :location %>
+  <div>
+    <%= f.submit "Join Pi In The Sky" %>
+  </div>
+<% end %>
