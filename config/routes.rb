@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   post "login" => "sessions#create", as: "new_login"
 
   resources :users, only: [:show, :new, :create]
+
+  root "users#new"
 end
