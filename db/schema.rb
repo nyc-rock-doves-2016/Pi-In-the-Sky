@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512203826) do
+ActiveRecord::Schema.define(version: 20160513003917) do
+
+  create_table "data_objects", force: :cascade do |t|
+    t.string   "location",   null: false
+    t.datetime "date",       null: false
+    t.float    "aqi",        null: false
+    t.string   "type",       null: false
+    t.string   "pollutant"
+    t.string   "effects"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id",        null: false
+    t.integer  "data_object_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "favorites", ["data_object_id"], name: "index_favorites_on_data_object_id"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",      null: false
