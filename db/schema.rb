@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160512203826) do
     t.string   "last_name",       null: false
     t.string   "password_digest", null: false
     t.string   "email",           null: false
-    t.integer  "phone",           null: false
+    t.string   "phone",           null: false
     t.string   "location",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
