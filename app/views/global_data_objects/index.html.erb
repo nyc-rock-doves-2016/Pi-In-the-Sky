@@ -58,7 +58,7 @@
 
         <div id="output">Air Quality Metrics:</div>
         <%=render "errors"%>
-        <%= button_to "Favorite!", { action: "create" }, remote: true, form: { "data-type" => "json" } %>
+        <%= button_to "Favorite!", { action: "create", controller: "favorites" } %>
     <div>
 
     </div>

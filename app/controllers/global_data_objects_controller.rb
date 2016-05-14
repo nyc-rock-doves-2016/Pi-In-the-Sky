@@ -5,7 +5,6 @@ class GlobalDataObjectsController < ApplicationController
   end
 
   def create
-    binding.pry
     if params[:response][:data_valid] == "true"
       @global_data_object = GlobalDataObject.create(global_data_object_params)
       redirect_to root_path
@@ -17,7 +16,6 @@ class GlobalDataObjectsController < ApplicationController
   def show
        @global_data_object = GlobalDataObject.find(params[:id])
   end
-
 
 private
   def global_data_object_params
