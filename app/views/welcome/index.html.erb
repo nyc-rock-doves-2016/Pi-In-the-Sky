@@ -30,7 +30,6 @@
         $.ajax({
           url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
           dataType: "json"
-
         }).then(function(response){
             document.getElementById("output").innerHTML = response.breezometer_aqi;
              $.ajax({
