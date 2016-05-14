@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root 'global_data_objects#index'
 
-  resources :data_objects
+  resources :global_data_objects
 
 
   get "logout" => "sessions#destroy", as: "logout"
