@@ -8,7 +8,7 @@
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="../assets/javascripts/application.js"></script>
+
   </head>
   <body>
     <div id="map"></div>
@@ -19,38 +19,42 @@
           center: {lat: 44.540, lng: -78.546},
           zoom: 8
         });
+
         google.maps.event.addListener(map, 'click', function(event) {
+          //store LAT/LON upon click of google
+          var x = "ok"
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
           var latlength = Math.floor(lat * 10000000) / 10000000
           var lnglength = Math.floor(lng * 10000000) / 10000000
+          // post to rails backend with lat lon
+          // rails backend makes request to API
 
-          console.log("api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0")
+        // $.ajax({
+        //   // GET json data from Breezy API using google maps LAT/LON
+        //   url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
+        //   dataType: "json",
+        //   {option: '1'}
 
-        $.ajax({
-          url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
-          dataType: "json"
-        }).then(function(response){
-            // debugger;
+          $.get("https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0", {name: "john"}).then(function(response){
+            // display AQI data on page
             if(response.data_valid == true){
               document.getElementById("output").innerHTML =
-              [response.breezometer_aqi, response.breezometer_description, response.dominant_pollutant_text["effects"]];
+              [response.breezometer_aqi, response.dominant_pollutant_description, response.breezometer_description, response.dominant_pollutant_text["effects"]];
             } else {
               document.getElementById("output").innerHTML =
-              // response.error.message;
               "Air quality cannot be read. You may be on the brink of death."
             }
-
-        $.ajax({
-              url: '/data_objects',
-              dataType: 'json',
-              method: 'post',
-              data: {response, "authenticity_token": "<%= form_authenticity_token %>"}
-
-            })
-          })
-        });
-      }
+            // POST response to server to create AQI object
+            $.ajax({
+                  url: '/global_data_objects',
+                  dataType: 'json',
+                  method: 'post',
+                  data: {response, "authenticity_token": "<%= form_authenticity_token %>"}
+                })
+              })
+            });
+          }
     </script>
     <div id="AQI-container">
       <!-- show data object -->
@@ -58,10 +62,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
         async defer></script>
 
-        <div id="output">The API request is:</div>
+        <div id="output">Air Quality Metrics:</div>
         <%=render "errors"%>
-
-
+        <%= button_to "Favorite!", { action: "create", controller: "favorites" } %>
     <div>
 
     </div>
