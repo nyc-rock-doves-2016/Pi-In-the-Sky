@@ -5,11 +5,12 @@ class GlobalDataObjectsController < ApplicationController
   end
 
   def create
+    binding.pry
     if params[:response][:data_valid] == "true"
       @global_data_object = GlobalDataObject.create(global_data_object_params)
-      redirect_to '/'
+      redirect_to root_path
     else
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 
@@ -25,6 +26,7 @@ private
                                      :datetime,
                                      :breezometer_aqi,
                                      :breezometer_description,
+                                     :dominant_pollutant_description,
                                      dominant_pollutant_text: [:effects])
   end
 end

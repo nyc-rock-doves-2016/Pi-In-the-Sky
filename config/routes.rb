@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'global_data_objects#index'
 
   resources :global_data_objects
+  resources :favorites, only: [:create]
 
 
   get "logout" => "sessions#destroy", as: "logout"
