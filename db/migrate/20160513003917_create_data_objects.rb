@@ -1,12 +1,12 @@
 class CreateDataObjects < ActiveRecord::Migration
   def change
     create_table :data_objects do |t|
-      t.string :location, null: false
-      t.datetime :date, null: false
-      t.float :aqi, null: false
-      t.string :type, null: false
-      t.string :pollutant
-      t.string :effects
+      t.string :country_name, null: false
+      t.datetime :datetime, null: false
+      t.float :breezometer_aqi, null: false
+      t.string :breezometer_description, null: false
+      t.string :type
+      t.string :dominant_pollutant_text
 
       t.timestamps null: false
     end

@@ -31,8 +31,17 @@
           url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
           dataType: "json"
         }).then(function(response){
-            document.getElementById("output").innerHTML = response.breezometer_aqi;
-             $.ajax({
+            // debugger;
+            if(response.data_valid == true){
+              document.getElementById("output").innerHTML =
+              [response.breezometer_aqi, response.breezometer_description, response.dominant_pollutant_text["effects"]];
+            } else {
+              document.getElementById("output").innerHTML =
+              // response.error.message;
+              "Air quality cannot be read. You may be on the brink of death."
+            }
+
+        $.ajax({
               url: '/data_objects',
               dataType: 'json',
               method: 'post',
@@ -46,10 +55,15 @@
     <div id="AQI-container">
       <!-- show data object -->
     </div>
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
         async defer></script>
 
         <div id="output">The API request is:</div>
+        <%=render "errors"%>
+
+
+    <div>
+
+    </div>
   </body>
 </html>

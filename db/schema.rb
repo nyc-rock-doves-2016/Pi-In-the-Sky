@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160513003917) do
 
   create_table "data_objects", force: :cascade do |t|
-    t.string   "location",   null: false
-    t.datetime "date",       null: false
-    t.float    "aqi",        null: false
-    t.string   "type",       null: false
-    t.string   "pollutant"
-    t.string   "effects"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "country_name",            null: false
+    t.datetime "datetime",                null: false
+    t.float    "breezometer_aqi",         null: false
+    t.string   "breezometer_description", null: false
+    t.string   "type"
+    t.string   "dominant_pollutant_text"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "favorites", force: :cascade do |t|
