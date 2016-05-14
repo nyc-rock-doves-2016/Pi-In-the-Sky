@@ -1,17 +1,17 @@
-<div class="container">
-  <div>
-    <%= render './shared/errors'%>
-  </div>
+<div class="row">
+  <div id="form" class="medium-6 medium-centered text-center columns">
+    <div id="errors">
+      <%= render './shared/errors'%>
+    </div>
+    <div>
+      <%= form_tag new_login_path do %>
+        <%= email_field_tag :email, nil, placeholder: "Email" %>
+    </div>
+    <div>
+      <%= password_field_tag :password, nil, placeholder: "Password" %>
+    </div>
+    <div class="small-12 small-centered text-center columns">
+      <%= submit_tag "Log In", class: 'button' %>
+      <% end %>
+    </div>
 </div>
-<div>
-  <%= form_tag new_login_path do %>
-    <%= email_field_tag :email, nil, placeholder: "Email" %>
-</div>
-<div>
-  <%= password_field_tag :password, nil, placeholder: "Password" %>
-</div>
-<div class="small-12 small-centered text-center columns">
-  <%= submit_tag "Log In", class: 'button' %>
-</div>
-
-<% end %>
