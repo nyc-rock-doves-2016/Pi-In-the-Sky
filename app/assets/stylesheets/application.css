@@ -40,3 +40,10 @@ h1 {
 a {
   text-align: 'center'
 }
+
+input[placeholder]{
+
+    color:#2BA6CB;
+    text-align:center;
+
+}
