@@ -1,8 +1,12 @@
-class DataObjectsController < ApplicationController
+class GlobalDataObjectsController < ApplicationController
+
+  def index
+    @global_data_object = GlobalDataObject.last
+  end
 
   def create
     if params[:response][:data_valid] == "true"
-      @data_object = DataObject.create(data_object_params)
+      @global_data_object = GlobalDataObject.create(global_data_object_params)
       redirect_to '/'
     else
       redirect_to '/'
@@ -10,12 +14,12 @@ class DataObjectsController < ApplicationController
   end
 
   def show
-       @data_object = DataObject.find(params[:id])
+       @global_data_object = GlobalDataObject.find(params[:id])
   end
 
 
 private
-  def data_object_params
+  def global_data_object_params
     params.require(:response).permit(:type,
                                      :country_name,
                                      :datetime,

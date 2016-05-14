@@ -1,5 +1,4 @@
 class Favorite < ActiveRecord::Base
-  belongs_to :api_data
-  belongs_to :pi_data
+  belongs_to :global_data_object
   belongs_to :user
 end
