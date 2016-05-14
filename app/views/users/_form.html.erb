@@ -1,28 +1,27 @@
 
-<%=form_for @user do |f| %>
-  <div>
-    <%= f.label :first_name, "First Name" %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div>
-    <%= f.label :last_name, "Last Name" %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div>
-    <%= f.label :password, "Password" %>
-    <%= f.text_field :password %>
-  </div>
-  <div>
-    <%= f.label :email, "Email" %>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :phone, "Phone" %>
-    <%= f.phone_field :phone %>
-  </div>
-  <%= f.label :location, "Location" %>
-  <%= f.text_field :location %>
-  <div>
-    <%= f.submit "Join Pi In The Sky" %>
+<div id="register-form" class="small-12 small-centered text-center columns">
+  <div class="small-12 small-centered columns">
+    <%=form_for @user do |f| %>
+      <div>
+        
+        <%= f.text_field :first_name, placeholder: "First Name" %>
+      </div>
+      <div>
+        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+      </div>
+      <div>
+        <%= f.text_field :password, placeholder: "Password" %>
+      </div>
+      <div>
+        <%= f.email_field :email, placeholder: "Email"%>
+      </div>
+      <div>
+        <%= f.phone_field :phone, placeholder: "Phone Number" %>
+      </div>
+      <%= f.text_field :location, placeholder: "Location" %>
+      <div>
+        <%= f.submit "Join Pi In The Sky", class: 'button' %>
+      </div>
   </div>
 <% end %>
+</div>

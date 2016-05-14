@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160514185916) do
+=======
+ActiveRecord::Schema.define(version: 20160513223843) do
+
+  create_table "api_objects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "data_objects", force: :cascade do |t|
+    t.string   "location",   null: false
+    t.datetime "date",       null: false
+    t.float    "aqi",        null: false
+    t.string   "type",       null: false
+    t.string   "pollutant"
+    t.string   "effects"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+>>>>>>> old modified files prior to schema redesign, updated gemfile to include foundation, normalize and css for registration page
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",               null: false
@@ -23,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160514185916) do
   add_index "favorites", ["global_data_object_id"], name: "index_favorites_on_global_data_object_id"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
+<<<<<<< HEAD
   create_table "global_data_objects", force: :cascade do |t|
     t.string   "country_name",                   null: false
     t.datetime "datetime",                       null: false
@@ -39,6 +60,11 @@ ActiveRecord::Schema.define(version: 20160514185916) do
     t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+=======
+  create_table "pi_objects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> old modified files prior to schema redesign, updated gemfile to include foundation, normalize and css for registration page
   end
 
   create_table "users", force: :cascade do |t|
