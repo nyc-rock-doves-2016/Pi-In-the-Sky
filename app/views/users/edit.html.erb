@@ -1,0 +1,27 @@
+<div class="medium-6 medium-centered text-center columns">
+  <h1>Edit User Information </h1>
+</div>
+
+<div>
+    <div class="medium-6 medium-centered text-center columns">
+    <%=form_for @user do |f| %>
+      <div>
+        
+        <%= f.text_field :first_name, placeholder: "First Name" %>
+      </div>
+      <div>
+        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+      </div>
+      <div>
+        <%= f.email_field :email, placeholder: "Email"%>
+      </div>
+      <div>
+        <%= f.phone_field :phone, placeholder: "Phone Number" %>
+      </div>
+      <%= f.text_field :location, placeholder: "Location" %>
+      <div>
+        <%= f.submit "Save Changes", class: 'button' %>
+      </div>
+  </div>
+  <% end %>
+</div>
