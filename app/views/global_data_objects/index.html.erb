@@ -19,28 +19,36 @@
           center: {lat: 44.540, lng: -78.546},
           zoom: 8
         });
+        var geocoder  = new google.maps.Geocoder();             //
 
         google.maps.event.addListener(map, 'click', function(event) {
           //store LAT/LON upon click of google
           var x = "ok"
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
-          var latlength = Math.floor(lat * 10000000) / 10000000
-          var lnglength = Math.floor(lng * 10000000) / 10000000
-          // post to rails backend with lat lon
-          // rails backend makes request to API
+          latlength = Math.floor(lat * 10000000) / 10000000
+          lnglength = Math.floor(lng * 10000000) / 10000000
 
-        // $.ajax({
-        //   // GET json data from Breezy API using google maps LAT/LON
-        //   url: "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0",
-        //   dataType: "json",
-        //   {option: '1'}
+          $.get("https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0").then(function(response){
+            // reverse geolocate address based on coordinates
 
-          $.get("https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0", {name: "john"}).then(function(response){
+            var location  = {lat: latlength, lng: lnglength}
+
+            // turn coordinates into an object
+            geocoder.geocode({'latLng': location}, function (results, status) {
+              if(status == google.maps.GeocoderStatus.OK) {           // if geocode success
+                city = results[0].address_components[3].short_name
+            // if address found, pass to processing function
+            // document.write(add);
+              }
+
+
             // display AQI data on page
+
             if(response.data_valid == true){
+              // debugger;
               document.getElementById("output").innerHTML =
-              [response.breezometer_aqi, response.dominant_pollutant_description, response.breezometer_description, response.dominant_pollutant_text["effects"]];
+              [city, response.breezometer_aqi, response.dominant_pollutant_description, response.breezometer_description, response.dominant_pollutant_text["effects"]];
             } else {
               document.getElementById("output").innerHTML =
               "Air quality cannot be read. You may be on the brink of death."
@@ -50,10 +58,13 @@
                   url: '/global_data_objects',
                   dataType: 'json',
                   method: 'post',
-                  data: {response, "authenticity_token": "<%= form_authenticity_token %>"}
+                  data: {response, city, "authenticity_token": "<%= form_authenticity_token %>"}
+                  // remeber to pass in specific address
                 })
               })
             });
+// closing geocoder here to retain access to 'city' variable
+            })
           }
     </script>
     <div id="AQI-container">

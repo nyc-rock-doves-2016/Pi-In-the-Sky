@@ -7,6 +7,7 @@ class GlobalDataObjectsController < ApplicationController
   def create
     if params[:response][:data_valid] == "true"
       @global_data_object = GlobalDataObject.create(global_data_object_params)
+      @global_data_object.city = params[:city]
       redirect_to root_path
     else
       redirect_to root_path
@@ -19,7 +20,7 @@ class GlobalDataObjectsController < ApplicationController
 
 private
   def global_data_object_params
-    params.require(:response).permit(:type,
+    params.require(:response).permit(
                                      :country_name,
                                      :datetime,
                                      :breezometer_aqi,
