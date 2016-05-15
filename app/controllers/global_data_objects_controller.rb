@@ -1,6 +1,7 @@
 class GlobalDataObjectsController < ApplicationController
 
   def index
+    @user = User.find_by(id: session[:user_id])
     @global_data_object = GlobalDataObject.last
   end
 
