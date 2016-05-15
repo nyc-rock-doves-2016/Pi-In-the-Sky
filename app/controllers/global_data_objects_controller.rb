@@ -1,5 +1,7 @@
 class GlobalDataObjectsController < ApplicationController
 
+
+
   def index
     @global_data_object = GlobalDataObject.last
   end
