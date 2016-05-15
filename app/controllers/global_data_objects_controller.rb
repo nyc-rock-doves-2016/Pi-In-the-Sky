@@ -10,6 +10,7 @@ class GlobalDataObjectsController < ApplicationController
     if params[:response][:data_valid] == "true"
       @global_data_object = GlobalDataObject.create(global_data_object_params)
       @global_data_object.city = params[:city]
+      @global_data_object.save
       redirect_to root_path
     else
       redirect_to root_path

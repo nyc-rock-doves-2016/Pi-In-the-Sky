@@ -1,1 +1,12 @@
-<%= render 'nav' %>  
+<%= render 'nav' %>
+
+Welcome, <%=@user.first_name%>!
+
+<p> Favorite Cities </p>
+<%@favorite_objects.each do |object| %>
+<p>City: <%=object.city%></p>
+<p>AQI: <%=object.breezometer_aqi%></p>
+<p>Description: <%=object.breezometer_description%></p>
+<p>Dominant Pollutant: <%=object.dominant_pollutant_description%></p>
+
+<%end%>
