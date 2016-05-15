@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'global_data_objects#index'
+  root 'welcome#index'
 
   resources :global_data_objects
   resources :favorites, only: [:create]
