@@ -10,6 +10,49 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require normalize-rails
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
+
  */
+
+
+h1 {
+  font-family: 'Montserrat';
+  text-align: 'center';
+}
+
+#new-user-header {
+  text-align: 'center';
+}
+
+#register-form {
+  font-family: 'Montserrat';
+  text-align: 'center';
+}
+
+.button {
+  text-align: 'center';
+}
+.name {
+  list-style: none;
+}
+
+a {
+  text-align: 'center'
+}
+
+input[placeholder]{
+
+    color:#2BA6CB;
+    text-align:center;
+
+}
+
+.top-bar {
+    overflow: hidden;
+}
+
+
