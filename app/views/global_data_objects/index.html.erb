@@ -16,8 +16,8 @@
       function initMap() {
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
-          center: {lat: 44.540, lng: -78.546},
-          zoom: 8
+          center: {lat: 40.7118739, lng: -74.002533},
+          zoom: 11
         });
         var geocoder  = new google.maps.Geocoder();             //
 
@@ -47,8 +47,18 @@
 
             if(response.data_valid == true){
               // debugger;
-              document.getElementById("output").innerHTML =
-              [city, response.breezometer_aqi, response.dominant_pollutant_description, response.breezometer_description, response.dominant_pollutant_text["effects"]];
+              document.getElementById("city").innerHTML = [city]
+
+              document.getElementById("AQI").innerHTML = [response.breezometer_aqi];
+
+              document.getElementById("AQIdesc").innerHTML = [response.breezometer_description];
+
+              document.getElementById("pollutant").innerHTML = response.dominant_pollutant_description
+               ;
+
+              document.getElementById("dominant-pollutant-text").innerHTML = response.dominant_pollutant_text["effects"]
+               ;
+
             } else {
               document.getElementById("output").innerHTML =
               "Air quality cannot be read. You may be on the brink of death."
@@ -63,7 +73,7 @@
                 })
               })
             });
-// closing geocoder here to retain access to 'city' variable
+        // closing geocoder here to retain access to 'city' variable
             })
           }
     </script>
@@ -73,9 +83,23 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
         async defer></script>
 
-        <div id="output">Air Quality Metrics:</div>
-        <%=render "errors"%>
-        <%= button_to "Favorite!", { action: "create", controller: "favorites" } %>
+      <table>
+        <tr>
+          <td><b>City</b></td>
+          <td><b>AQI</b></td>
+          <td><b>Description</b></td>
+          <td><b>Primary Toxin</b></td>
+        </tr>
+        <tr>
+          <td id="city"></td>
+          <td id="AQI"></td>
+          <td id="AQIdesc"></td>
+          <td id="pollutant"></td>
+        </tr>
+      </table>
+        <p id="dominant-pollutant-text"></p>
+        <div id="output"></div>
+        <b><%= button_to "Favorite!", action: "create", controller: "favorites" %></b>
     <div>
 
     </div>
