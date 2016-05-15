@@ -3,7 +3,7 @@
   <head>
     <style>
       #map {
-        width: 500px;
+        width: 1300px;
         height: 400px;
       }
     </style>
@@ -11,13 +11,14 @@
 
   </head>
   <body>
+    <center><h3>Air Quality Index Locator</h3></center>
     <div id="map"></div>
     <script>
       function initMap() {
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
           center: {lat: 40.7118739, lng: -74.002533},
-          zoom: 11
+          zoom: 10
         });
         var geocoder  = new google.maps.Geocoder();             //
 
@@ -82,7 +83,7 @@
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
         async defer></script>
-
+        <p>Click the map to get your AQI details!</p>
       <table>
         <tr>
           <td><b>City</b></td>
@@ -101,7 +102,9 @@
         <div id="output"></div>
         <b><%= button_to "Favorite!", action: "create", controller: "favorites" %></b>
     <div>
+      <a href="/users/<%=@user.id%>"><b>User Profile</b></a>
 
     </div>
+     <center><%=image_tag ("aqi-conditions.png")%> </center>
   </body>
 </html>
