@@ -36,7 +36,7 @@
 
             // turn coordinates into an object
             geocoder.geocode({'latLng': location}, function (results, status) {
-              if(status == google.maps.GeocoderStatus.OK) {           // if geocode success
+              if(status == google.maps.GeocoderStatus.OK && response.data_valid == true) {           // if geocode success
                 city = results[0].address_components[3].short_name
             // if address found, pass to processing function
             // document.write(add);
