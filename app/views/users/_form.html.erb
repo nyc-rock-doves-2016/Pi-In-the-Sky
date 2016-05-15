@@ -1,6 +1,6 @@
 
 <div id="register-form" class="small-12 small-centered text-center columns">
-  <div class="medium-6 medium-centered text-center columns">
+  <div class="medium-3 medium-centered text-center columns">
     <%=form_for @user do |f| %>
       <div>
         
@@ -10,7 +10,7 @@
         <%= f.text_field :last_name, placeholder: "Last Name"  %>
       </div>
       <div>
-        <%= f.text_field :password, placeholder: "Password" %>
+        <%= f.password_field :password, placeholder: "Password" %>
       </div>
       <div>
         <%= f.email_field :email, placeholder: "Email"%>
