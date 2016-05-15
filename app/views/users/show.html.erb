@@ -1,12 +1,31 @@
 <%= render 'nav' %>
+ 
+<div class="show-header">
+  <div class="small-12 small-centered text-center columns">
+    <h1>Welcome, <%=@user.first_name%>!</h1>
+    <h2>Here are your favorite cities: </h2>  
+  </div>
 
-Welcome, <%=@user.first_name%>!
+  
+</div>
 
-<p> Favorite Cities </p>
 <%@favorite_objects.each do |object| %>
-<p>City: <%=object.city%></p>
-<p>AQI: <%=object.breezometer_aqi%></p>
-<p>Description: <%=object.breezometer_description%></p>
-<p>Dominant Pollutant: <%=object.dominant_pollutant_description%></p>
-
-<%end%>
+<table>
+  <thead>
+    <tr>
+      <th width="200">City</th>
+      <th width="150">AQI</th>
+      <th width="150">Description</th>
+      <th width="150">Primary Toxin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><%=object.city%></p></td>
+      <td><p><%=object.breezometer_aqi%></p></td>
+      <td><p><%=object.breezometer_description%></p></td>
+      <td><p><%=object.dominant_pollutant_description%></p></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

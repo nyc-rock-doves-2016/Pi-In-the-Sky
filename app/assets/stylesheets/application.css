@@ -40,6 +40,10 @@ h1 {
   list-style: none;
 }
 
+.favorite-cities {
+  font-family: 'Montserrat'
+}
+
 a {
   text-align: 'center'
 }
