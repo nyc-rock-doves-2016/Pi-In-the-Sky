@@ -1,10 +1,5 @@
 $(document).ready(function(){
 debugger;
-// function initMap() {
-  $('#map').on('click', function(){
-    event.preventDefault();
-    alert('hello')
-  })
 
   setInterval(renderSensor,1000);
 
@@ -15,11 +10,10 @@ debugger;
       method: 'GET',
       // datatype: 'json'
     }
-
     requestObject = $.ajax(responseOptions);
     requestObject.done(function(response){
-    $.('#sensor').html(response);
-  }
+      $.('#sensor').html(response);
+    }
 })
 
     function getState(results){
