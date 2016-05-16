@@ -29,16 +29,10 @@
   </thead>
   <tbody>
     <tr>
-      <td><p><%=object.city%></p></td>
+      <td><p><%=object.city%>, <%=object.state%></p></td>
       <td><p><%=object.breezometer_aqi%></p></td>
       <td><p><%=object.breezometer_description%></p></td>
       <td><p><%=object.dominant_pollutant_description%></p></td>
-      <td><p>Button</p></td>
-      <td><p id="AQI-update">
-        <%= form_for object do |object| %>
-          <%= object.submit "Refresh AQI" %>
-        <%end%>
-      </p></td>
     </tr>
   </tbody>
 </table>

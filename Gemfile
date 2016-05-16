@@ -30,6 +30,7 @@ gem 'foundation-rails'
 
 #CSS Normalize Gem
 gem 'normalize-rails'
+gem 'httparty'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -40,13 +40,8 @@
             // turn coordinates into an object
             geocoder.geocode({'latLng': location}, function (results, status) {
               if(status == google.maps.GeocoderStatus.OK && response.data_valid == true) {
-            // if geocode success
-                // city = results[0].address_components[3].short_name
                 city = getCity(results);
                 state = getState(results);
-            // if address found, pass to processing function
-            // document.write(add);
-
               }
 
 
@@ -76,7 +71,6 @@
                   dataType: 'json',
                   method: 'post',
                   data: {response, city, state, "authenticity_token": AUTH_TOKEN}
-                  // remeber to pass in specific address
                 })
               })
             });
