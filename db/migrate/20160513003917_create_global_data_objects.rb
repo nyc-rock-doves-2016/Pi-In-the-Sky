@@ -8,6 +8,7 @@ class CreateGlobalDataObjects < ActiveRecord::Migration
       t.string :breezometer_description, null: false
       t.string :dominant_pollutant_text, null: false
       t.string :city
+      t.string :state
 
       t.timestamps null: false
     end
