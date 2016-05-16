@@ -59,6 +59,16 @@ input[placeholder]{
     overflow: hidden;
 }
 
+input:required:invalid, input:focus:invalid {
+    background-image: url(image-path("/images/invalid.png"));
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+  input:required:valid {
+    background: url(image-path("/images/valid.png"));
+    background-position: right;
+    background-repeat: no-repeat;
+  }
 
 
 
