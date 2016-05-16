@@ -1,12 +1,18 @@
 class LocalDataObjectsController < ApplicationController
 
   def create
-    binding.pry
-    @local_data_object = LocalDataObject.new()
+    @local_data_object = LocalDataObject.new(user_id: params[:user_id], sensor_output: params[:sensor_output])
+    if @local_data_object.save
+      render text: 'OK'
+    else
+      render text: 'Failed to save'
+    end
   end
 
-  def update
-
+  def latest
+    ldo = LocalDataObject.last
+    render json: { reading: ldo.sensor_output }
   end
+
 
 end

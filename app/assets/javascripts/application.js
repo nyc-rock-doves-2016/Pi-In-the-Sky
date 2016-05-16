@@ -1,4 +1,26 @@
-// $(document).ready(function(){
+$(document).ready(function(){
+debugger;
+// function initMap() {
+  $('#map').on('click', function(){
+    event.preventDefault();
+    alert('hello')
+  })
+
+  setInterval(renderSensor,1000);
+
+  function renderSensor(){
+    debugger;
+    responseOptions = {
+      url: '/local_data_objects/latest',
+      method: 'GET',
+      // datatype: 'json'
+    }
+
+    requestObject = $.ajax(responseOptions);
+    requestObject.done(function(response){
+    $.('#sensor').html(response);
+  }
+})
 
     function getState(results){
       for (i = 0; i < results[0].address_components.length; i++){
@@ -78,7 +100,6 @@
             })
           }
 
-// })
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
@@ -97,5 +118,5 @@
 //= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+
 

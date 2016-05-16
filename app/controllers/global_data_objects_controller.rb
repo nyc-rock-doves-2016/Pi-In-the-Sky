@@ -3,6 +3,7 @@ class GlobalDataObjectsController < ApplicationController
   def index
     @user = User.find_by(id: session[:user_id])
     @global_data_object = GlobalDataObject.last
+    @local_data_object = LocalDataObject.last
   end
 
   def create
