@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
 
 
 
-  protect_from_forgery with: :exception
+
+  protect_from_forgery with: :null_session
+
 
   GOOGLE_API_KEY = ENV["GOOGLE_API_KEY"]
   BREEZY_KEY = ENV["BREEZY_API_KEY"]

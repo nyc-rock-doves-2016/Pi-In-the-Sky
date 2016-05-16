@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :global_data_objects
   resources :favorites, only: [:create]
-
+  resources :local_data_objects, only: [:create]
   get "register" => "users#new", as: "register"
   get "logout" => "sessions#destroy", as: "logout"
   get "login" => "sessions#new", as: "login"
