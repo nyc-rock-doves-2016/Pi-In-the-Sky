@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create , :edit, :update]
 
+  get 'notifications/notify' => 'notifications#notify'
 
   get 'notifications/notify' => 'notifications#notify'
 end

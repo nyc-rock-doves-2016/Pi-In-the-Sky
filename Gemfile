@@ -38,6 +38,10 @@ gem 'httparty'
 gem 'twilio-ruby'
 
 
+#Twilio Gem
+gem 'twilio-ruby'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
