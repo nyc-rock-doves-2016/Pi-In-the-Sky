@@ -15,9 +15,12 @@ class UsersController < ApplicationController
   end
 
     def show
-      # binding.pry
       @user = User.find_by(id: params[:id])
       @favorite_objects = @user.global_data_objects
+      @favorite_objects.each do |object|
+        response = call_breezy_api(object)
+        object.update_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
+      end
     end
 
     def edit
@@ -34,6 +37,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def call_breezy_api(object)
+    url = HTTParty.get("https://api.breezometer.com/baqi/?location=#{object.city},+#{object.state}&key=c0bfb33a27924f7e95a828abc931d5a0", :verify => false)
+    response = JSON.parse(url.body)
+  end
+
     private
 
     def user_params
@@ -44,4 +52,5 @@ class UsersController < ApplicationController
                                    :phone,
                                    :location)
     end
+
 end

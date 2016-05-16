@@ -1,13 +1,21 @@
 <%= render 'nav' %>
- 
+
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">
     <h1>Welcome, <%=@user.first_name%>!</h1>
-    <h2>Here are your favorite cities: </h2>  
+    <h2>Here are your favorite cities: </h2>
   </div>
 
-  
+
 </div>
+    <script>
+    $(document).ready(function(){
+
+      $('.edit_global_data_object').on("submit", function(event){
+
+      })
+    })
+    </script>
 
 <%@favorite_objects.each do |object| %>
 <table>
@@ -21,7 +29,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><p><%=object.city%></p></td>
+      <td><p><%=object.city%>, <%=object.state%></p></td>
       <td><p><%=object.breezometer_aqi%></p></td>
       <td><p><%=object.breezometer_description%></p></td>
       <td><p><%=object.dominant_pollutant_description%></p></td>

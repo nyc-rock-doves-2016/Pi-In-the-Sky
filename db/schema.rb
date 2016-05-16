@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160514185916) do
     t.string   "breezometer_description",        null: false
     t.string   "dominant_pollutant_text",        null: false
     t.string   "city"
+    t.string   "state"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
