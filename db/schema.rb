@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160514185916) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",               null: false
     t.integer  "global_data_object_id", null: false
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20160514185916) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "favorites", ["global_data_object_id"], name: "index_favorites_on_global_data_object_id"
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+  add_index "favorites", ["global_data_object_id"], name: "index_favorites_on_global_data_object_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "global_data_objects", force: :cascade do |t|
     t.string   "country_name",                   null: false
