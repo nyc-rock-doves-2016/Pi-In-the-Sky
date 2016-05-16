@@ -33,6 +33,10 @@ gem 'foundation-rails'
 #CSS Normalize Gem
 gem 'normalize-rails'
 
+#Twilio Gem
+gem 'twilio-ruby'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
