@@ -17,7 +17,23 @@ class GlobalDataObjectsController < ApplicationController
   end
 
   def show
-       @global_data_object = GlobalDataObject.find(params[:id])
+    @global_data_object = GlobalDataObject.find(params[:id])
+  end
+
+  def update
+    @global_data_object = GlobalDataObject.find(params[:id])
+   binding.pry
+    call_breezy_api
+  end
+
+  def call_breezy_api
+    call= "https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0"
+    auth = {:username => "test", :password => "password"}
+    url = HTTParty.get("https://surveys.com#{call}",
+          :basic_auth => auth,
+          :headers => { 'ContentType' => 'application/json' } )
+    response = JSON.parse(url.body)
+
   end
 
 private

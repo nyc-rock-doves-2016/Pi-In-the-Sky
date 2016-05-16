@@ -14,6 +14,13 @@
     <center><h3>Air Quality Index Locator</h3></center>
     <div id="map"></div>
     <script>
+    function getState(results){
+      for (i = 0; i < results[0].address_components.length; i++){
+        if(results[0].address_components[i].types[0].includes("administrative_area_level_1")){
+          return results[0].address_components[i].short_name
+        }
+      }
+    }
       function initMap() {
         var mapDiv = document.getElementById('map');
         var map = new google.maps.Map(mapDiv, {
@@ -37,10 +44,13 @@
 
             // turn coordinates into an object
             geocoder.geocode({'latLng': location}, function (results, status) {
-              if(status == google.maps.GeocoderStatus.OK && response.data_valid == true) {           // if geocode success
+              if(status == google.maps.GeocoderStatus.OK && response.data_valid == true) {
+              debugger;         // if geocode success
                 city = results[0].address_components[3].short_name
+                state = getState(results);
             // if address found, pass to processing function
             // document.write(add);
+
               }
 
 
@@ -48,7 +58,7 @@
 
             if(response.data_valid == true){
               // debugger;
-              document.getElementById("city").innerHTML = [city]
+              document.getElementById("city").innerHTML = [city, state]
 
               document.getElementById("AQI").innerHTML = [response.breezometer_aqi];
 
