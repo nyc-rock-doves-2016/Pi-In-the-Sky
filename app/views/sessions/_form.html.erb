@@ -6,14 +6,19 @@
     <div id="login-input-field">
       <div>
         <%= form_tag new_login_path do %>
-          <%= email_field_tag :email, nil, placeholder: "Email" %>
-      </div>
-      <div>
-        <%= password_field_tag :password, nil, placeholder: "Password" %>
-      </div>
-    </div>
-    <div class="small-12 small-centered text-center columns">
-      <%= submit_tag "Log In", class: 'button' %>
-      <% end %>
+  <p>
+    <%= email_field_tag :email, nil, placeholder: "Email" %>
+  </p>
+
+  <p>
+    <%= password_field_tag :password, nil, placeholder: "Password" %> 
+  </p>
+
+  <p>
+    <%= submit_tag "Log In", class: "button" %>
+  </p>
+<% end %>
+
+
     </div>
 </div>
