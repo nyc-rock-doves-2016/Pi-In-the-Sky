@@ -24,7 +24,6 @@ class NotificationsController < ApplicationController
         to: phone_number,
         body: alert_message,)
 
-      render plain: message.status
     end
   end
 
