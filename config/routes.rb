@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :global_data_objects
-  resources :favorites, only: [:create]
+  resources :favorites, only: [:create, :destroy]
   resources :local_data_objects, only: [:create] do
     collection do
       get 'latest'
