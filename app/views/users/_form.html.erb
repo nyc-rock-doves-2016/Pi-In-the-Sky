@@ -3,7 +3,7 @@
   <div class="medium-3 medium-centered text-center columns">
     <%=form_for @user do |f| %>
       <div>
-        
+
         <%= f.text_field :first_name, placeholder: "First Name", required: true %>
       </div>
       <div>
@@ -18,7 +18,6 @@
       <div>
         <%= f.phone_field :phone, placeholder: "Phone (Format XXX-XXX-XXXX)", pattern: "^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", required: true %>
       </div>
-      <%= f.text_field :location, placeholder: "Location", required: true %>
       <div>
         <%= f.submit "Join Pi In The Sky", class: 'button' %>
       </div>

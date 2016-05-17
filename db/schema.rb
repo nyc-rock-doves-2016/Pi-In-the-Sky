@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20160516231931) do
     t.string   "password_digest",              null: false
     t.string   "email",                        null: false
     t.string   "phone",                        null: false
-    t.string   "location",                     null: false
     t.integer  "alert_level",     default: 60
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
