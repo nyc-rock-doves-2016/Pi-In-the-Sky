@@ -43,26 +43,6 @@ class UsersController < ApplicationController
       end
     end
 
-  def check_threshold(alert, user, global_data_object)
-    # AQI is above user threshold
-    if user.alert_level < global_data_object.breezometer_aqi
-      alert.ready_to_send? == true
-    end
-  end
-
-  def send_alert(alert, user)
-    message = alert.message
-    phone_number = user.phone
-
-    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
-
-    twilio_number = Rails.application.secrets.twilio_number
-
-    final_message = client.messages.create(
-      from: twilio_number,
-      to: phone_number,
-      body: message,)
-  end
 
 
     def edit
@@ -84,6 +64,26 @@ class UsersController < ApplicationController
     response = JSON.parse(url.body)
   end
 
+  def check_threshold(alert, user, global_data_object)
+    # AQI is above user threshold
+    if user.alert_level < global_data_object.breezometer_aqi
+      alert.ready_to_send? == true
+    end
+  end
+
+  def send_alert(alert, user)
+    message = alert.message
+    phone_number = user.phone
+
+    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+
+    twilio_number = Rails.application.secrets.twilio_number
+
+    final_message = client.messages.create(
+      from: twilio_number,
+      to: phone_number,
+      body: message,)
+  end
 
 
 
