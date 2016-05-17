@@ -92,3 +92,7 @@ input:required:invalid, input:focus:invalid {
         width: 100%;
         height: 500px;
       }
+
+#sensor {
+  font-size: 5em;
+}
