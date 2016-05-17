@@ -69,6 +69,14 @@
                ;
 
             } else {
+                document.getElementById("city").innerHTML = ""
+
+              document.getElementById("AQI").innerHTML = "";
+
+              document.getElementById("AQIdesc").innerHTML = "";
+
+              document.getElementById("pollutant").innerHTML = ""
+               ;
               document.getElementById("output").innerHTML =
               "Air quality cannot be read. You may be on the brink of death."
             }
