@@ -10,4 +10,9 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+     @favorite = Favorite.where(user_id: session[:user_id]).first.destroy
+      redirect_to user_path
+  end
+
 end

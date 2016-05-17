@@ -19,6 +19,7 @@
       <th width="150">AQI</th>
       <th width="150">Description</th>
       <th width="150">Primary Toxin</th>
+      <th width="150"></th>
     </tr>
   </thead>
   <tbody>
@@ -27,8 +28,11 @@
       <td><p><%=object.breezometer_aqi%></p></td>
       <td><p><%=object.breezometer_description%></p></td>
       <td><p><%=object.dominant_pollutant_description%></p></td>
+      <td> <p><%= button_to "Delete", favorite_path(@user, @edit_global_data_object), method: :delete %></p></td>
     </tr>
+
   </tbody>
+
 </table>
 <% end %>
 <div class="small-12 small-centered text-center columns"> <h2> <%= link_to "Log Out", logout_path %> </h2>
