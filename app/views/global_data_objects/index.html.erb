@@ -3,6 +3,9 @@
   <head>
   </head>
   <body>
+
+
+
     <div id="top" class='row'>
       <div class='large-centered text-center columns'>
           <%if LocalDataObject.any? %>
@@ -22,6 +25,12 @@
         </div>
       </div>
     </div>
+
+          <div id="map"><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
+              async defer></script></div>
+        <p>Click the map to get your AQI details!</p>
+        <%= render partial: 'shared/errors'%>
+
       <table>
         <tr>
           <td><b>City</b></td>
