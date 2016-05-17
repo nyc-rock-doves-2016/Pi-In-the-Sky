@@ -6,7 +6,6 @@
 //= require foundation
 //= require_tree .
 
-
     function getState(results){
       for (i = 0; i < results[0].address_components.length; i++){
         if(results[0].address_components[i].types[0].includes("administrative_area_level_1")){
@@ -33,6 +32,7 @@
 
         google.maps.event.addListener(map, 'click', function(event) {
           //store LAT/LON upon click of google
+          $('.button_to').removeClass("button_to")
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
           latlength = Math.floor(lat * 10000000) / 10000000
