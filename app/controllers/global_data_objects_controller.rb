@@ -1,20 +1,26 @@
 class GlobalDataObjectsController < ApplicationController
 
   def index
-    @user = User.find_by(id: session[:user_id])
-    @global_data_object = GlobalDataObject.last
-    @local_data_object = LocalDataObject.last
+    if logged_in?
+      @user = User.find_by(id: session[:user_id])
+      @global_data_object = GlobalDataObject.last
+      @local_data_object = LocalDataObject.last
+    else
+      render 'shared/404'
+    end
   end
 
   def create
-    if params[:response][:data_valid] == "true"
-      @global_data_object = GlobalDataObject.create(global_data_object_params)
-      @global_data_object.city = params[:city]
-      @global_data_object.state = params[:state]
-      @global_data_object.save
-      redirect_to root_path
-    else
-      redirect_to root_path
+    if logged_in?
+      if params[:response][:data_valid] == "true"
+        @global_data_object = GlobalDataObject.create(global_data_object_params)
+        @global_data_object.city = params[:city]
+        @global_data_object.state = params[:state]
+        @global_data_object.save
+        redirect_to root_path
+      else
+        redirect_to root_path
+      end
     end
   end
 

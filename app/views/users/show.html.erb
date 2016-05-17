@@ -1,11 +1,12 @@
 <%= render 'nav' %>
+<% if logged_in? %>
 
+</div>
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">
     <h1>Welcome, <%=@user.first_name%>!</h1>
     <h2>Here are your favorite cities: </h2>
   </div>
-
 
 </div>
     <script>
@@ -36,4 +37,11 @@
     </tr>
   </tbody>
 </table>
+<% end %>
+<div class="small-12 small-centered text-center columns"> <h2> <%= link_to "Log Out", logout_path %> </h2>
+<% else %>
+<div class="medium-12 medium-centered text-center columns" >
+  <h1> <%= link_to "Log In", login_path %> or <%= link_to "Register", register_path %> to continue </h1>
+</div>
+
 <% end %>
