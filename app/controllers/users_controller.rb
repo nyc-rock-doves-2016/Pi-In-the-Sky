@@ -17,21 +17,21 @@ class UsersController < ApplicationController
     end
   end
 
-    def show
-      @user = User.find_by(id: params[:id])
-      @favorite_objects = @user.global_data_objects
+  def show
+    @user = User.find_by(id: params[:id])
+    @favorite_objects = @user.global_data_objects
 
-    # error handle for when lat lon returns API data but country address doesn't
-    # try to make call with more precise address for accuracy
+  # error handle for when lat lon returns API data but country address doesn't
+  # try to make call with more precise address for accuracy
 
-      @favorite_objects.each do |object|
-        response = call_breezy_api(object)
-        object.assign_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
+    @favorite_objects.each do |object|
+      response = call_breezy_api(object)
+      object.assign_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
 
-        if object.save
-        else
+      if object.save
+      else
 
-        end
+      end
 
         # if user exists, set 'ready to send' = true if object is higher than threshold
           if object.alert
@@ -56,24 +56,22 @@ class UsersController < ApplicationController
 
     def update
     @user = User.find(params[:id])
-
-    if @user.update(user_params)
-      redirect_to @user
-    else
-      render 'edit'
-    end
+      if @user.update(user_params)
+        redirect_to @user
+      else
+        render 'edit'
+      end
   end
 
 
-    private
+private
 
-    def user_params
+  def user_params
       params.require(:user).permit(:first_name,
                                    :last_name,
                                    :password,
                                    :email,
-                                   :phone,
-                                   :location)
-    end
+                                   :phone)
+  end
 
 end
