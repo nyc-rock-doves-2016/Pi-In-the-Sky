@@ -70,9 +70,9 @@ input:required:invalid, input:focus:invalid {
     background-repeat: no-repeat;
   }
 
-#sensor {
-  font-size:5em;
-}
+  .button_to {
+    visibility: hidden;
+  }
 
 #container {
   /*background: linear-gradient(white, #ccf5ff);*/

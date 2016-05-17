@@ -37,9 +37,15 @@
         </tr>
       </table>
         <p id="dominant-pollutant-text"></p>
-        <div class='small-centered text-center columns'>
-        <b id='favorite'><%= button_to "Favorite!", action: "create", controller: "favorites"%></b>
-      </div>
+
+        <div id="output"></div>
+
+        <b><%= button_to "Favorite!", action: "create", controller: "favorites", form_class: "favorite" %></b>
+    <div>
+    <%if @user %>
+      <a href="/users/<%=@user.id%>"><b>User Profile</b></a>
+    <%end%>
+    </div>
     <div class='row'>
       <div class='medium-centered text-center columns'>
         <%=image_tag ("breezometer-index.jpg")%>
