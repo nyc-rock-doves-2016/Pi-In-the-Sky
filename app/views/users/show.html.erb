@@ -1,22 +1,15 @@
 <%= render 'nav' %>
 <% if logged_in? %>
 
-</div>
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">
     <h1>Welcome, <%=@user.first_name%>!</h1>
     <h2>Here are your favorite cities: </h2>
   </div>
 
+  <h5> Your alert level is: <%=@user.alert_level%></h5>
+
 </div>
-    <script>
-    $(document).ready(function(){
-
-      $('.edit_global_data_object').on("submit", function(event){
-
-      })
-    })
-    </script>
 
 <%@favorite_objects.each do |object| %>
 <table>

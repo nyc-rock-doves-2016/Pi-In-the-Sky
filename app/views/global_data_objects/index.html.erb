@@ -11,8 +11,12 @@
 
   </head>
   <body>
+    <%if LocalDataObject.any? %>
     <center><h3>Sensor Data</h3></center>
     <div id="sensor"><%=@local_data_object.sensor_output%></div>
+    <%else%>
+    <h2>No Sensor Data Available</h2>
+    <%end%>
     <center><h3>Air Quality Index Locator</h3></center>
     <div id="map"></div>
 

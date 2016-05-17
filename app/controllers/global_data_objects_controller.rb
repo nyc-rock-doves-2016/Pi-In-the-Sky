@@ -28,17 +28,6 @@ class GlobalDataObjectsController < ApplicationController
     @global_data_object = GlobalDataObject.find(params[:id])
   end
 
-  def update
-    # binding.pry
-    user = User.find_by(id: session[:user_id])
-    objects = user.global_data_objects
-    global_data_object = GlobalDataObject.find(params[:id])
-    response = call_breezy_api(global_data_object)
-    binding.pry
-    global_data_object.assign_attributes(global_data_object_params)
-    redirect_to user_path(@user)
-  end
-
 
 
 private

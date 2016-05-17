@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email, null: false, unique: true
       t.string :phone, null: false, unique: true
       t.string :location, null: false
+      t.integer :alert_level, default: 60
 
       t.timestamps null: false
     end
