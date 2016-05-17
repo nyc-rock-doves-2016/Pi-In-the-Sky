@@ -8,4 +8,28 @@ class User < ActiveRecord::Base
   validates :email, :phone, presence: true, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
   validates_format_of :phone, :with => /\A\d{3}-\d{3}-\d{4}\z/, on: :create
+
+
+  def check_threshold(alert, global_data_object)
+    # AQI is above user threshold
+    if alert_level < global_data_object.breezometer_aqi
+      alert.ready_to_send? == true
+    end
+  end
+
+  def send_alert(alert)
+    message = alert.message
+    phone_number = phone
+
+    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+
+    twilio_number = Rails.application.secrets.twilio_number
+
+    final_message = client.messages.create(
+      from: twilio_number,
+      to: phone_number,
+      body: message,)
+  end
+
+
 end

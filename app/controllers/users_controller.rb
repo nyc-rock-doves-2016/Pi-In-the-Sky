@@ -27,16 +27,17 @@ class UsersController < ApplicationController
       @favorite_objects.each do |object|
         response = call_breezy_api(object)
         object.update_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
-
+            # change to assign attributes
+            # if save, proceed, else error handle
           if object.alert
             alert = object.alert
-            check_threshold(alert, @user, object)
+            @user.check_threshold(alert, object)
           end
 
         # AQI is below user threshold
         if (@user.alert_level > object.breezometer_aqi) && (object.alert == true || object.alert == nil)
           alert = Alert.find_or_create_by(global_data_object_id: object.id, message: "Alert! You have fallen below your AQI threshold for #{object.city}, #{object.state}")
-          send_alert(alert, @user)
+          @user.send_alert(alert)
           alert.ready_to_send? == false
          #check to see if alert sent
         end
@@ -59,31 +60,28 @@ class UsersController < ApplicationController
     end
   end
 
-  def call_breezy_api(object)
-    url = HTTParty.get("https://api.breezometer.com/baqi/?location=#{object.city},+#{object.state}&key=c0bfb33a27924f7e95a828abc931d5a0", :verify => false)
-    response = JSON.parse(url.body)
-  end
 
-  def check_threshold(alert, user, global_data_object)
-    # AQI is above user threshold
-    if user.alert_level < global_data_object.breezometer_aqi
-      alert.ready_to_send? == true
-    end
-  end
 
-  def send_alert(alert, user)
-    message = alert.message
-    phone_number = user.phone
+  # def check_threshold(alert, user, global_data_object)
+  #   # AQI is above user threshold
+  #   if user.alert_level < global_data_object.breezometer_aqi
+  #     alert.ready_to_send? == true
+  #   end
+  # end
 
-    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+  # def send_alert(alert, user)
+  #   message = alert.message
+  #   phone_number = user.phone
 
-    twilio_number = Rails.application.secrets.twilio_number
+  #   client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
 
-    final_message = client.messages.create(
-      from: twilio_number,
-      to: phone_number,
-      body: message,)
-  end
+  #   twilio_number = Rails.application.secrets.twilio_number
+
+  #   final_message = client.messages.create(
+  #     from: twilio_number,
+  #     to: phone_number,
+  #     body: message,)
+  # end
 
 
 
