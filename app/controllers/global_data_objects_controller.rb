@@ -1,9 +1,12 @@
 class GlobalDataObjectsController < ApplicationController
 
   def index
+    if logged_in?
     @user = User.find_by(id: session[:user_id])
     @global_data_object = GlobalDataObject.last
     @local_data_object = LocalDataObject.last
+  else
+    render '404'
   end
 
   def create
