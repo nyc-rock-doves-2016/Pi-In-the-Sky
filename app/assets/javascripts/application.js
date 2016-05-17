@@ -65,7 +65,7 @@
               document.getElementById("pollutant").innerHTML = response.dominant_pollutant_description
                ;
 
-              document.getElementById("dominant-pollutant-text").innerHTML = response.dominant_pollutant_text["effects"]
+              document.getElementById("output").innerHTML = response.dominant_pollutant_text["effects"]
                ;
 
             } else {
