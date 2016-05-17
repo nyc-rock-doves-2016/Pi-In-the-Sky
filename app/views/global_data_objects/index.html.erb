@@ -11,21 +11,24 @@
 
   </head>
   <body>
-    <%if LocalDataObject.any? %>
-    <center><h3>Sensor Data</h3></center>
-    <div id="sensor"><%=@local_data_object.sensor_output%></div>
-    <%else%>
-    <h2>No Sensor Data Available</h2>
-    <%end%>
-    <center><h3>Air Quality Index Locator</h3></center>
-
-    <div id="map"></div>
-
-    <div id="AQI-container">
-      <!-- show data object -->
+    <div id="top" class='row'>
+      <div class='medium-centered text-center columns'>
+        <div class="small-centered text-center columns"></div>
+          <%if LocalDataObject.any? %>
+              <h1>Local CO2</h1>
+              <div id="sensor"><%=@local_data_object.sensor_output%></div>
+              <div>ppm</div>
+          <%else%>
+            <h2>No Sensor Data Available</h2>
+          <%end%>
+              <hr>
+              <h3>Air Quality Index Locator</h3>
+          <div id="AQI-container">
+        </div>
+      </div>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
-        async defer></script>
+          <div id="map"><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
+              async defer></script></div>
         <p>Click the map to get your AQI details!</p>
       <table>
         <tr>
@@ -43,12 +46,16 @@
       </table>
         <p id="dominant-pollutant-text"></p>
         <div id="output"></div>
-        <b><%= button_to "Favorite!", action: "create", controller: "favorites" %></b>
+        <b id='favorite'><%= button_to "Favorite!", action: "create", controller: "favorites"%></b>
     <div>
     <%if @user %>
       <a href="/users/<%=@user.id%>"><b>User Profile</b></a>
     <%end%>
     </div>
-     <center><%=image_tag ("aqi-conditions.png")%> </center>
+    <div class='row'>
+      <div class='medium-centered text-center columns'>
+        <%=image_tag ("breezometer-index.jpg")%>
+      </div>
+   </div>
   </body>
 </html>
