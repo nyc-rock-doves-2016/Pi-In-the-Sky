@@ -31,9 +31,9 @@
         var geocoder  = new google.maps.Geocoder();             //
 
         google.maps.event.addListener(map, 'click', function(event) {
-          //store LAT/LON upon click of google
-          $('.button_to').removeClass("button_to")
+          $('#favorite').css("visibility", "visible")
           $('#errors').html("")
+          //store LAT/LON upon click of google
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
           latlength = Math.floor(lat * 10000000) / 10000000
