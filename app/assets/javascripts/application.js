@@ -33,6 +33,7 @@
         google.maps.event.addListener(map, 'click', function(event) {
           //store LAT/LON upon click of google
           $('.button_to').removeClass("button_to")
+          $('#errors').html("")
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
           latlength = Math.floor(lat * 10000000) / 10000000
