@@ -5,12 +5,12 @@
           <div id="sensor"><%=@local_data_object.sensor_output%></div>
           <div>ppm</div>
           <hr>
-          <h3>Air Quality Index Locator</h3>
-        <div id="map"><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
-            async defer></script></div>
       <%else%>
         <h2>No Sensor Data Available</h2>
       <%end%>
+        <h3>Air Quality Index Locator</h3>
+        <div id="map"><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
+            async defer></script></div>
           <p>Click the map to get your AQI details!</p>
           <hr>
           <%= render partial: 'shared/errors'%>
