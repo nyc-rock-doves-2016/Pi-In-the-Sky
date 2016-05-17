@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 20160516231931) do
   enable_extension "plpgsql"
 
   create_table "alerts", force: :cascade do |t|
-    t.integer  "global_data_object_id",                 null: false
-    t.boolean  "ready_to_send?",        default: false
-    t.string   "message",                               null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "global_data_object_id",                null: false
+    t.boolean  "ready_to_send?",        default: true
+    t.string   "message",                              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "favorites", force: :cascade do |t|

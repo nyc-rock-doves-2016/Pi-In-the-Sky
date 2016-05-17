@@ -20,16 +20,50 @@ class UsersController < ApplicationController
     def show
       @user = User.find_by(id: params[:id])
       @favorite_objects = @user.global_data_objects
+
+    # error handle for when lat lon returns API data but country address doesn't
+    # try to make call with more precise address for accuracy
+
       @favorite_objects.each do |object|
         response = call_breezy_api(object)
         object.update_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
 
-        if @user.alert_level > object.breezometer_aqi
-          alert = Alert.create_or_find_by(global_data_object_id: object.id, message: "Alert! You have fallen below your AQI threshold for #{object.city}, #{object.state}")
-          send_alert(alert)
+          if object.alert
+            alert = object.alert
+            check_threshold(alert, @user, object)
+          end
+
+        # AQI is below user threshold
+        if (@user.alert_level > object.breezometer_aqi) && (object.alert == true || object.alert == nil)
+          alert = Alert.find_or_create_by(global_data_object_id: object.id, message: "Alert! You have fallen below your AQI threshold for #{object.city}, #{object.state}")
+          send_alert(alert, @user)
+          alert.ready_to_send? == false
          #check to see if alert sent
+        end
       end
     end
+
+  def check_threshold(alert, user, global_data_object)
+    # AQI is above user threshold
+    if user.alert_level < global_data_object.breezometer_aqi
+      alert.ready_to_send? == true
+    end
+  end
+
+  def send_alert(alert, user)
+    message = alert.message
+    phone_number = user.phone
+
+    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+
+    twilio_number = Rails.application.secrets.twilio_number
+
+    final_message = client.messages.create(
+      from: twilio_number,
+      to: phone_number,
+      body: message,)
+  end
+
 
     def edit
       @user = User.find_by(id:params[:id])
@@ -51,48 +85,6 @@ class UsersController < ApplicationController
   end
 
 
-def below_threshold
-    @user = User.find_by(id: session[:user_id])
-    @user.global_data_objects.each do |object|
-    if @user.alert_level < object.breezometer_aqi
-      # code run upon user show refresh
-      # create alert object OR find alert object and check if ready to send
-      # object.alert exists? this checks if we need to create
-        # current time
-        # ready_to_send?
-        # message
-
-      # alert joint table betweeen user and globaldata
-      # ready to send defaults to false, switches true when global data object goes back above threshold
-      send_alert
-    end
-  end
-
-  def send_alert(alert)
-    # find by user global data object
-    # check users GDO for alerts
-
-    alert_message = "Air Quality is Poor today."
-    user = User.all
-    phone_numbers = []
-    user.each do |user|
-      phone_numbers.push(user.phone)
-    end
-
-    client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
-
-    # twilio_number = Rails.application.secrets.twilio_number
-
-
-    phone_numbers.each do |phone_number|
-
-      message = client.messages.create(
-        from: "+13479336675",
-        to: phone_number,
-        body: alert_message,)
-
-    end
-  end
 
 
     private
