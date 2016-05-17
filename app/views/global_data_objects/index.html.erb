@@ -1,35 +1,27 @@
  <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      #map {
-        width: 1300px;
-        height: 400px;
-      }
-    </style>
-
-
   </head>
   <body>
     <div id="top" class='row'>
-      <div class='medium-centered text-center columns'>
-        <div class="small-centered text-center columns"></div>
+      <div class='large-centered text-center columns'>
           <%if LocalDataObject.any? %>
               <h1>Local CO2</h1>
               <div id="sensor"><%=@local_data_object.sensor_output%></div>
               <div>ppm</div>
+              <hr>
+              <h3>Air Quality Index Locator</h3>
+            <div id="map"><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
+                async defer></script></div>
           <%else%>
             <h2>No Sensor Data Available</h2>
           <%end%>
+              <p>Click the map to get your AQI details!</p>
               <hr>
-              <h3>Air Quality Index Locator</h3>
           <div id="AQI-container">
         </div>
       </div>
     </div>
-          <div id="map"><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPFEGsOj9qknr0hyVxA78O8cS0OTbvbrE&callback=initMap"
-              async defer></script></div>
-        <p>Click the map to get your AQI details!</p>
       <table>
         <tr>
           <td><b>City</b></td>
@@ -45,17 +37,18 @@
         </tr>
       </table>
         <p id="dominant-pollutant-text"></p>
-        <div id="output"></div>
+        <div class='small-centered text-center columns'>
         <b id='favorite'><%= button_to "Favorite!", action: "create", controller: "favorites"%></b>
-    <div>
-    <%if @user %>
-      <a href="/users/<%=@user.id%>"><b>User Profile</b></a>
-    <%end%>
-    </div>
+      </div>
     <div class='row'>
       <div class='medium-centered text-center columns'>
         <%=image_tag ("breezometer-index.jpg")%>
       </div>
    </div>
+    <div class='small-centered text-center columns'>
+    <%if @user %>
+      <a href="/users/<%=@user.id%>"><b>User Profile</b></a>
+    <%end%>
+    </div>
   </body>
 </html>
