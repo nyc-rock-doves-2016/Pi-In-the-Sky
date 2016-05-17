@@ -70,6 +70,21 @@ input:required:invalid, input:focus:invalid {
     background-repeat: no-repeat;
   }
 
+#sensor {
+  font-size:5em;
+}
 
+#container {
+  /*background: linear-gradient(white, #ccf5ff);*/
+}
 
-
+#favorite {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

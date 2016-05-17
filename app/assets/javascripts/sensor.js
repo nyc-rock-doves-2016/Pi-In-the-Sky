@@ -7,3 +7,4 @@ function renderSensor(){
     $('#sensor').html(response.reading);
   });
 }
+
