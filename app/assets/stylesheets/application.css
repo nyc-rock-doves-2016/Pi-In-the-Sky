@@ -70,15 +70,16 @@ input:required:invalid, input:focus:invalid {
     background-repeat: no-repeat;
   }
 
-  .button_to {
+  /*.button_to {
     visibility: hidden;
-  }
+  }*/
 
-#container {
-  /*background: linear-gradient(white, #ccf5ff);*/
+/*#container {
+  background: linear-gradient(white, #ccf5ff);
 }
-
+*/
 #favorite {
+    visibility: hidden;
     background-color: #0099ff;
     border: none;
     color: white;
