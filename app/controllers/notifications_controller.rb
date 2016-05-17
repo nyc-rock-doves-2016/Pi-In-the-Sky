@@ -2,8 +2,26 @@ class NotificationsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
 
+  def below_threshold
+    @user = User.find_by(id: session[:user_id])
+    @user.global_data_objects.each do |object|
+    if @user.alert_level < object.breezometer_aqi
+      # code run upon user show refresh
+      # create alert object OR find alert object and check if ready to send
+      # object.alert exists? this checks if we need to create
+        # current time
+        # ready_to_send?
+        # message
 
-  def notify
+      # alert joint table betweeen user and globaldata
+      # ready to send defaults to false, switches true when global data object goes back above threshold
+      send_alert
+    end
+  end
+
+  def send_alert
+    # find by user global data object
+    # check users GDO for alerts
 
     alert_message = "Air Quality is Poor today."
     user = User.all
