@@ -1,7 +1,7 @@
 <% if @errors %>
   <ul>
     <% @errors.each do |message| %>
-      <li> <%= message %> </li>
+      <b><p id="errors"> <%= message %> </p></b>
     <% end %>
   </ul>
 <% end %>
