@@ -8,3 +8,4 @@ class CreateLocalDataObjects < ActiveRecord::Migration
     end
   end
 end
+
