@@ -10,8 +10,12 @@ class LocalDataObjectsController < ApplicationController
   end
 
   def latest
-    ldo = LocalDataObject.last
-    render json: { reading: ldo.sensor_output }
+    if LocalDataObject.any?
+      ldo = LocalDataObject.last
+      render json: { reading: ldo.sensor_output }
+    else
+      render json: {reading: "Sensor Offline"}
+    end
   end
 
 
