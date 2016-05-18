@@ -6,7 +6,7 @@
     <h1>Welcome, <%=@user.first_name%>!</h1>
     <h2>Here are your favorite cities: </h2>
   </div>
-
+<% if @user.id == current_user.id %>
   <div id='alert_form'>
     <h5> Your alert level is:</h5>
     <%=form_for @user do |f|%>
@@ -15,6 +15,7 @@
     <%end%>
   </div>
 </div>
+<% end %>
 
 <%@favorite_objects.each do |object| %>
 <table>
