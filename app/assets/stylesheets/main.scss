@@ -78,6 +78,7 @@ input:required:invalid, input:focus:invalid {
 }
 
 
+
 #favorites {
   border:1px solid black;
   margin:2em;
@@ -119,15 +120,11 @@ input:required:invalid, input:focus:invalid {
   left: 10%;
   margin: 0 auto;
 
-}
-table{
-  border-radius: 166px;
-}
-#GDO-index-header{
 
+#GDO-index-header{
+  text-align: center;
   background-color: #FA6900;
   height: 60px;
-  border: 1px solid black;
   border-radius: 166px;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -138,7 +135,20 @@ table{
   font-family: 'Montserrat', sans-serif;
 }
 
+#first {
+
+  border-radius: 15px 0 0 0;
+}
+
+
+#last {
+
+  border-radius: 0 15px 0 0;
+}
+
+
 #GDO-index-info {
+  text-align: center;
   background-color: #E0E4CC;
   font-family: 'Montserrat', sans-serif;
 }
