@@ -56,10 +56,9 @@ class UsersController < ApplicationController
 
     def update
     @user = User.find(params[:id])
-      if @user.update(user_params)
+    @user.alert_level = params[:user][:alert_level]
+      if @user.save
         redirect_to @user
-      else
-        render 'edit'
       end
   end
 
