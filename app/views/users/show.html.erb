@@ -7,8 +7,13 @@
     <h2>Here are your favorite cities: </h2>
   </div>
 
-  <h5> Your alert level is: <%=@user.alert_level%></h5>
-
+  <div id='alert_form'>
+    <h5> Your alert level is:</h5>
+    <%=form_for @user do |f|%>
+      <%= f.select :alert_level, options_for_select([['80', 80], ['60', 60],['40', 40],['20', 20]],@user.alert_level) %>
+      <%=f.submit "Update"%>
+    <%end%>
+  </div>
 </div>
 
 <%@favorite_objects.each do |object| %>
