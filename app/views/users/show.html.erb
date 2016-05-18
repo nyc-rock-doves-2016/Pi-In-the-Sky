@@ -3,17 +3,18 @@
 
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">
-    <h1>Welcome, <%=@user.first_name.capitalize%>!</h1>
+    <h2>Welcome, <%=@user.first_name.capitalize%>!</h2>
 
   <div class="small-12 small-centered text-center columns"id='edit_form'>
     <%=form_for @user do |f|%>
     Text me at:
-    <div id='phone'>
-      <%= f.phone_field :phone, placeholder: "Phone Number" %>
+    <div id='phone_div'>
+      <%= f.phone_field :phone, placeholder: "Phone Number", class: 'phone_number'%>
     </div>
     when my favorite city's AQI is less than:
-    <div id='alert_level'>
-      <%= f.select :alert_level, options_for_select([['80  ', 80], ['60  ', 60],['40  ', 40],['20  ', 20]],@user.alert_level)%>
+    <div id='alert_level_div'>
+      <%= f.select :alert_level, options_for_select([['80  ', 80], ['60  ', 60],['40  ', 40],['20  ', 20]],@user.alert_level), {}, class: 'alert_level'
+      %>
     </div>
       <%=f.submit "Update"%>
     <%end%>

@@ -36,6 +36,7 @@ input[placeholder]{
 
 .top-bar {
     overflow: hidden;
+    background-color: white;
 }
 
 input:required:invalid, input:focus:invalid {
@@ -74,4 +75,41 @@ input:required:invalid, input:focus:invalid {
 
 #sensor {
   font-size: 5em;
+}
+
+#favorites {
+  border:1px solid black;
+  margin:2em;
+  padding:1em;
+}
+
+.center {
+  text-align: center;
+}
+
+
+.small-select {
+  width:1em;
+}
+
+#alert_level_div {
+  display: inline-block;
+  width: 4em;
+}
+
+#phone_div {
+  display: inline-block;
+}
+
+#edit_form {
+  font-size: 1em;
+}
+
+.phone_number {
+  height:2.2em;
+  width:8em;
+}
+
+.alert_level {
+  height:2.2em;
 }

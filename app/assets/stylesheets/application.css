@@ -18,25 +18,4 @@
 
  */
 
-#favorites {
-  border:1px solid black;
-  margin:2em;
-  padding:1em;
-}
 
-.center {
-  text-align: center;
-}
-
-
-.small-select {
-  width:1em;
-}
-
-#alert_level {
-  display: inline-block;
-}
-
-#phone {
-  display: inline-block;
-}
