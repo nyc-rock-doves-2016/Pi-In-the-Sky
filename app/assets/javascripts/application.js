@@ -42,8 +42,11 @@
             if(response.data_valid == true){
 
               $('#favorite').css("visibility", "visible")
+               $('#output').css("visibility", "visible")
+
             } else {
               $('#favorite').css("visibility", "hidden")
+              $('#output').css("visibility", "visible")
             }
 
             $('#errors').html("")

@@ -55,9 +55,18 @@ input:required:invalid, input:focus:invalid {
   background: linear-gradient(white, #ccf5ff);
 }
 */
+
+#row-above-map {
+
+ background-color:#FAFAED;
+  height: 88px;
+  position: relative;
+  bottom: 10px
+}
+
 #favorite {
     visibility: hidden;
-    background-color: #0099ff;
+    background-color: #49B7F2;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -66,6 +75,35 @@ input:required:invalid, input:focus:invalid {
     display: inline-block;
     font-size: 16px;
     border-radius: 25px;
+}
+
+#user-profile-link{
+  position: relative;
+  bottom: -3px;
+  padding: 3px;
+  color: #49B7F2;
+  font-family: 'Montserrat', sans-serif;
+  left: 32px;
+  font-size: 20px;
+}
+
+#sensor-text{
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+#map-header-text {
+  position: relative;
+  top: 19px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 33px;
+
+}
+
+#map-instruction-text {
+  position: relative;
+  top: 10px;
+  font-size: 20px;
 }
 
 #map {
@@ -121,9 +159,10 @@ input:required:invalid, input:focus:invalid {
   margin: 0 auto;
 
 
+
 #GDO-index-header{
   text-align: center;
-  background-color: #FA6900;
+  background-color: #F38630;
   height: 60px;
   border-radius: 166px;
   font-family: 'Montserrat', sans-serif;
@@ -136,13 +175,19 @@ input:required:invalid, input:focus:invalid {
 }
 
 #first {
-
   border-radius: 15px 0 0 0;
 }
 
 
-#last {
+#output{
+  position: relative;
+  visibility: hidden;
+  border: 1px solid #E0E4CC;
+  padding: 6px;
+  top: -18px;
+}
 
+#last {
   border-radius: 0 15px 0 0;
 }
 
@@ -151,4 +196,15 @@ input:required:invalid, input:focus:invalid {
   text-align: center;
   background-color: #E0E4CC;
   font-family: 'Montserrat', sans-serif;
+}
+
+#user-profile-link:hover {
+    color: #F38630;
+}
+
+
+footer {
+  text-align: center;
+  background-color: #E0E4CC;
+  color: 49B7F2;
 }
