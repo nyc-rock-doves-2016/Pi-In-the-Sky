@@ -4,7 +4,6 @@
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">
     <h2>Welcome, <%=@user.first_name.capitalize%>!</h2>
-
   <div class="small-12 small-centered text-center columns"id='edit_form'>
     <%=form_for @user do |f|%>
     Text me at:
@@ -41,8 +40,9 @@
             <td><p><%=object.breezometer_aqi%></p></td>
             <td><p><%=object.breezometer_description%></p></td>
             <td><p><%=object.dominant_pollutant_description%></p></td>
-            <td> <p><%= button_to "Delete", favorite_path(@user, @edit_global_data_object), method: :delete %></p></td>
-          </tr>
+              <% if @user.id == current_user.id %>
+                <td> <p><%= button_to "Delete", favorite_path(@user, @edit_global_data_object), method: :delete %></p></td>
+              <% end %>          </tr>
         </tbody>
       </table>
     <%end%>
