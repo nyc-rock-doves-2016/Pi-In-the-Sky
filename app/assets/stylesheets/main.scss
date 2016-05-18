@@ -152,12 +152,6 @@ input:required:invalid, input:focus:invalid {
 
 .alert_level {
   height:2.2em;
-  }
-
-#GDO-table{
-  position: relative;
-  left: 10%;
-  margin: 0 auto;
 }
 
 
@@ -208,4 +202,7 @@ footer {
   text-align: center;
   background-color: #E0E4CC;
   color: #49B7F2;
+  margin-top: 20px;
+  position: relative;
+  bottom: -59px;
 }
