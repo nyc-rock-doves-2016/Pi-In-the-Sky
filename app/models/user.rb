@@ -32,8 +32,10 @@ class User < ActiveRecord::Base
       to: phone_number,
       body: message,)
 
+
     rescue Twilio::REST::RequestError => e
-  puts e.message
+      puts e.message
+
   end
 
 

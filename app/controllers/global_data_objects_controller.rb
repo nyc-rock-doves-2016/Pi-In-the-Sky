@@ -28,8 +28,6 @@ class GlobalDataObjectsController < ApplicationController
     @global_data_object = GlobalDataObject.find(params[:id])
   end
 
-
-
 private
   def global_data_object_params
     params.require(:response).permit(
