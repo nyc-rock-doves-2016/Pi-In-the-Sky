@@ -211,9 +211,29 @@ input:required:invalid, input:focus:invalid {
     color: #F38630;
 }
 
+.register-link {
+  position: relative;
+
+}
+
+.login-link {
+  position: relative;
+  right: 3px;
+}
+
+ #homepage-header {
+  position: relative;
+
+ }
+
+#beginning-page {
+  background-color: gray;
+}
+
 .AQI-Image {
   border: 1px solid black;
 }
+
 footer {
   text-align: center;
   background-color: #E0E4CC;
@@ -222,3 +242,5 @@ footer {
   position: relative;
   bottom: -59px;
 }
+
+
