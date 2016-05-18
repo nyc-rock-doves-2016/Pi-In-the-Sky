@@ -1,0 +1,77 @@
+h1 {
+  font-family: 'Montserrat';
+  text-align: 'center';
+}
+
+#new-user-header {
+  text-align: 'center';
+}
+
+#register-form {
+  font-family: 'Montserrat';
+  text-align: 'center';
+}
+
+.button {
+  text-align: 'center';
+}
+.name {
+  list-style: none;
+}
+
+.favorite-cities {
+  font-family: 'Montserrat'
+}
+
+a {
+  text-align: 'center'
+}
+
+input[placeholder]{
+
+    color:#2BA6CB;
+    text-align:center;
+
+}
+
+.top-bar {
+    overflow: hidden;
+}
+
+input:required:invalid, input:focus:invalid {
+    background-image: url(image-path("/images/invalid.png"));
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+  input:required:valid {
+    background: url(image-path("/images/valid.png"));
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+
+/*#container {
+  background: linear-gradient(white, #ccf5ff);
+}
+*/
+#favorite {
+    visibility: hidden;
+    background-color: #0099ff;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 25px;
+}
+
+#map {
+        width: 100%;
+        height: 500px;
+      }
+
+#sensor {
+  font-size: 5em;
+}

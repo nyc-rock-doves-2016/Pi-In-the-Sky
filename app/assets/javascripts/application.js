@@ -85,7 +85,7 @@
                   url: '/global_data_objects',
                   dataType: 'json',
                   method: 'post',
-                  data: {response, city, state, "authenticity_token": AUTH_TOKEN}
+                  data: {response:response, city:city, state:state, "authenticity_token": AUTH_TOKEN}
                 })
               })
             });
