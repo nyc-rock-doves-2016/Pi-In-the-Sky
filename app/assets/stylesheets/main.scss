@@ -118,7 +118,7 @@ input:required:invalid, input:focus:invalid {
 
 
 #favorites {
-  border:1px solid black;
+  border:1px solid #FA6900;
   margin:2em;
   padding:1em;
 }
@@ -186,7 +186,21 @@ input:required:invalid, input:focus:invalid {
   border-radius: 0 15px 0 0;
 }
 
+#pi-link{
+  background-color:#E0E4CC;
+  position:relative;
+  font-family: 'Montserrat', sans-serif;
 
+}
+
+#orange-line {
+   border-top: 1px solid #FA6900;
+
+}
+
+#blue-line {
+ border-top: 1px solid #49B7F2;
+}
 #GDO-index-info {
   text-align: center;
   background-color: #E0E4CC;
