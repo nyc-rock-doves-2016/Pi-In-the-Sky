@@ -21,9 +21,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @favorite_objects = @user.global_data_objects
 
-  # error handle for when lat lon returns API data but country address doesn't
-  # try to make call with more precise address for accuracy
-
     @favorite_objects.each do |object|
       response = call_breezy_api(object)
       # binding.pry
@@ -44,7 +41,6 @@ class UsersController < ApplicationController
 
       # AQI is below user threshold
       if (@user.alert_level > object.breezometer_aqi) && (object.alert == true || object.alert == nil)
-        binding.pry
         alert = Alert.find_or_create_by(global_data_object_id: object.id, message: "Alert! You have fallen below your AQI threshold for #{object.city}, #{object.state}")
         @user.send_alert(alert)
         alert.ready_to_send? == false
@@ -53,11 +49,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-    def edit
-      @user = User.find_by(id:params[:id])
-    end
-
     def update
     @user = User.find(params[:id])
     @user.alert_level = params[:user][:alert_level]
@@ -65,7 +56,6 @@ class UsersController < ApplicationController
         redirect_to @user
       end
   end
-
 
 private
 
