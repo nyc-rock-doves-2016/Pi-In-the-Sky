@@ -1,5 +1,5 @@
 <%= render 'nav' %>
-<% if logged_in? %>
+<% if logged_in? && @user.id == current_user.id %>
 
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">

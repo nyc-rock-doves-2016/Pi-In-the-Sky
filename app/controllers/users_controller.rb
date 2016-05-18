@@ -19,34 +19,38 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @favorite_objects = @user.global_data_objects
+    if @user == nil 
+      render 'shared/404'
+    else
+      @favorite_objects = @user.global_data_objects
 
-    @favorite_objects.each do |object|
-      response = call_breezy_api(object)
-      # binding.pry
-      unless response.nil?
-        object.assign_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
+      @favorite_objects.each do |object|
+        response = call_breezy_api(object)
+        # binding.pry
+        unless response.nil?
+          object.assign_attributes(breezometer_aqi: response["breezometer_aqi"], dominant_pollutant_description: response["dominant_pollutant_description"], breezometer_description: response["breezometer_description"] )
 
-        if object.save
+          if object.save
 
-        else
+          else
 
+          end
+        end
+          # if user exists, set 'ready to send' = true if object is higher than threshold
+        if object.alert
+          alert = object.alert
+          @user.check_threshold(alert, object)
+        end
+
+        # AQI is below user threshold
+        if (@user.alert_level > object.breezometer_aqi) && (object.alert == true || object.alert == nil)
+          alert = Alert.find_or_create_by(global_data_object_id: object.id, message: "Alert! You have fallen below your AQI threshold for #{object.city}, #{object.state}")
+          @user.send_alert(alert)
+          alert.ready_to_send? == false
+         #check to see if alert sent
+          end
         end
       end
-        # if user exists, set 'ready to send' = true if object is higher than threshold
-      if object.alert
-        alert = object.alert
-        @user.check_threshold(alert, object)
-      end
-
-      # AQI is below user threshold
-      if (@user.alert_level > object.breezometer_aqi) && (object.alert == true || object.alert == nil)
-        alert = Alert.find_or_create_by(global_data_object_id: object.id, message: "Alert! You have fallen below your AQI threshold for #{object.city}, #{object.state}")
-        @user.send_alert(alert)
-        alert.ready_to_send? == false
-       #check to see if alert sent
-      end
-    end
   end
 
     def update
