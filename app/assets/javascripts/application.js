@@ -31,8 +31,6 @@
         var geocoder  = new google.maps.Geocoder();             //
 
         google.maps.event.addListener(map, 'click', function(event) {
-          $('#favorite').css("visibility", "visible")
-          $('#errors').html("")
           //store LAT/LON upon click of google
           var lat = (event.latLng.lat())
           var lng = (event.latLng.lng())
@@ -41,6 +39,14 @@
 
           $.get("https://api.breezometer.com/baqi/?lat="+latlength+"&lon="+lnglength+"&key=c0bfb33a27924f7e95a828abc931d5a0").then(function(response){
             // reverse geolocate address based on coordinates
+            if(response.data_valid == true){
+
+              $('#favorite').css("visibility", "visible")
+            } else {
+              $('#favorite').css("visibility", "hidden")
+            }
+
+            $('#errors').html("")
 
             var location  = {lat: latlength, lng: lnglength}
 
@@ -55,7 +61,7 @@
             // display AQI data on page
 
             if(response.data_valid == true){
-              // debugger;
+
               document.getElementById("city").innerHTML = [city, state]
 
               document.getElementById("AQI").innerHTML = [response.breezometer_aqi];
@@ -79,6 +85,7 @@
                ;
               document.getElementById("output").innerHTML =
               "Air quality cannot be read. You may be on the brink of death."
+
             }
             // POST response to server to create AQI object
             $.ajax({

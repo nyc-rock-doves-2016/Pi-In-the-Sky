@@ -77,6 +77,7 @@ input:required:invalid, input:focus:invalid {
   font-size: 5em;
 }
 
+
 #favorites {
   border:1px solid black;
   margin:2em;
@@ -112,4 +113,25 @@ input:required:invalid, input:focus:invalid {
 
 .alert_level {
   height:2.2em;
+
+#GDO-table{
+  position: relative;
+  left: 10%;
+  margin: 0 auto;
+
+}
+
+#GDO-index-header{
+
+  background-color: #FA6900;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 166px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+}
+
+#GDO-index-info {
+  background-color: #E0E4CC;
+  font-family: 'Montserrat', sans-serif;
 }
