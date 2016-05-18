@@ -3,43 +3,53 @@
 
 <div class="show-header">
   <div class="small-12 small-centered text-center columns">
-    <h1>Welcome, <%=@user.first_name%>!</h1>
-    <h2>Here are your favorite cities: </h2>
-  </div>
+    <h2>Welcome, <%=@user.first_name.capitalize%>!</h2>
 
-  <div id='alert_form'>
-    <h5> Your alert level is:</h5>
+  <div class="small-12 small-centered text-center columns"id='edit_form'>
     <%=form_for @user do |f|%>
-      <%= f.select :alert_level, options_for_select([['80', 80], ['60', 60],['40', 40],['20', 20]],@user.alert_level) %>
+    Text me at:
+    <div id='phone_div'>
+      <%= f.phone_field :phone, placeholder: "Phone Number", class: 'phone_number'%>
+    </div>
+    when my favorite city's AQI is less than:
+    <div id='alert_level_div'>
+      <%= f.select :alert_level, options_for_select([['80  ', 80], ['60  ', 60],['40  ', 40],['20  ', 20]],@user.alert_level), {}, class: 'alert_level'
+      %>
+    </div>
       <%=f.submit "Update"%>
     <%end%>
   </div>
 </div>
-
-<%@favorite_objects.each do |object| %>
-<table>
-  <thead>
-    <tr>
-      <th width="200">City</th>
-      <th width="150">AQI</th>
-      <th width="150">Description</th>
-      <th width="150">Primary Toxin</th>
-      <th width="150"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><p><%=object.city%>, <%=object.state%></p></td>
-      <td><p><%=object.breezometer_aqi%></p></td>
-      <td><p><%=object.breezometer_description%></p></td>
-      <td><p><%=object.dominant_pollutant_description%></p></td>
-      <td> <p><%= button_to "Delete", favorite_path(@user, @edit_global_data_object), method: :delete %></p></td>
-    </tr>
-
-  </tbody>
-
-</table>
-<% end %>
+<hr>
+<h2 class="center">Favorites</h2>
+<div id='favorites'>
+  <%if @favorite_objects.any?%>
+    <%@favorite_objects.each do |object| %>
+      <table>
+        <thead>
+          <tr>
+            <th width="200">City</th>
+            <th width="150">AQI</th>
+            <th width="150">Description</th>
+            <th width="150">Primary Toxin</th>
+            <th width="150"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><p><%=object.city%>, <%=object.state%></p></td>
+            <td><p><%=object.breezometer_aqi%></p></td>
+            <td><p><%=object.breezometer_description%></p></td>
+            <td><p><%=object.dominant_pollutant_description%></p></td>
+            <td> <p><%= button_to "Delete", favorite_path(@user, @edit_global_data_object), method: :delete %></p></td>
+          </tr>
+        </tbody>
+      </table>
+    <%end%>
+  <%else%>
+    <div class="center">You have no favorites at the moment</div>
+  <%end%>
+</div>
 <div class="small-12 small-centered text-center columns"> <h2> <%= link_to "Log Out", logout_path %> </h2>
 <% else %>
 <div class="medium-12 medium-centered text-center columns" >
@@ -47,3 +57,4 @@
 </div>
 
 <% end %>
+
