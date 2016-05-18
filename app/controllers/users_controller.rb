@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
     def update
     @user = User.find(params[:id])
-    @user.alert_level = params[:user][:alert_level]
+    @user.assign_attributes(phone: params[:user][:phone], alert_level: params[:user][:alert_level])
       if @user.save
         redirect_to @user
       end
