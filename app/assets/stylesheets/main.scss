@@ -235,6 +235,10 @@ input:required:invalid, input:focus:invalid {
 .background {
   background-image: url("http://free.wallpaperbackgrounds.com/earth/sky/25047-22655.jpg");
   position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   top: 140px;
 
 }
