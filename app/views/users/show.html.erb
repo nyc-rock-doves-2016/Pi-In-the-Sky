@@ -1,3 +1,4 @@
+<body class="user-show-page">
 <%= render 'nav' %>
 <% if logged_in? %>
 
@@ -22,22 +23,22 @@
 </div>
 
 <hr id = "blue-line">
-<h2 class="center">Favorites</h2>
+<h2 id="fav-header" class="center">Favorites</h2>
 <div id='favorites'>
   <%if @favorite_objects.any?%>
     <%@favorite_objects.each do |object| %>
-      <table>
+      <table class="responsive">
         <thead>
-          <tr>
-            <th width="200">City</th>
-            <th width="150">AQI</th>
-            <th width="150">Description</th>
-            <th width="150">Primary Toxin</th>
-            <th width="150"></th>
+          <tr id="GDO-index-header">
+            <th class="center" id="first" width="200">City</th>
+            <th class="center" width="150">AQI</th>
+            <th class="center" width="150">Description</th>
+            <th class="center" width="150">Primary Toxin</th>
+            <th class="center" id="last" width="150"></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="GDO-index-info">
             <td><p><%=object.city%>, <%=object.state%></p></td>
             <td><p><%=object.breezometer_aqi%></p></td>
             <td><p><%=object.breezometer_description%></p></td>
@@ -52,11 +53,18 @@
   <%end%>
 </div>
 
-<div class="small-12 small-centered text-center columns"> <h2> <%= link_to "Log Out", logout_path %> </h2>
+<div class="small-12 small-centered text-center columns"> <h2 id="login-show-page"> <%= link_to "Log Out", logout_path %> </h2>
 <% else %>
 <div class="medium-12 medium-centered text-center columns" >
   <h1> <%= link_to "Log In", login_path %> or <%= link_to "Register", register_path %> to continue </h1>
 </div>
 
 <% end %>
+</body>
 
+ <footer id="user-footer">Created 2016:
+                      <a href='https://github.com/JoshJHWu'>Josh Wu, </a>
+                      <a href='https://github.com/jillwc07'>Jillian Campbell, </a>
+                      <a href='https://github.com/darrow87'>Alex Forger, </a>
+                      <a href='https://github.com/carlincharge'>Carl Conroy</a>
+  </footer>

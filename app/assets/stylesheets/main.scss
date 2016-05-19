@@ -66,7 +66,7 @@ input:required:invalid, input:focus:invalid {
 
 #favorite {
     visibility: hidden;
-    background-color: #49B7F2;
+
     border: none;
     color: white;
     padding: 15px 32px;
@@ -118,7 +118,6 @@ input:required:invalid, input:focus:invalid {
 
 
 #favorites {
-  border:1px solid #FA6900;
   margin:2em;
   padding:1em;
 }
@@ -154,6 +153,12 @@ input:required:invalid, input:focus:invalid {
   height:2.2em;
 }
 
+#GDO-index-info {
+  text-align: center;
+  background-color: #E0E4CC;
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 #GDO-index-header{
   text-align: center;
@@ -187,25 +192,12 @@ input:required:invalid, input:focus:invalid {
 }
 
 #pi-link{
-  background-color:#E0E4CC;
+
   position:relative;
   font-family: 'Montserrat', sans-serif;
 
 }
 
-#orange-line {
-   border-top: 1px solid #FA6900;
-
-}
-
-#blue-line {
- border-top: 1px solid #49B7F2;
-}
-#GDO-index-info {
-  text-align: center;
-  background-color: #E0E4CC;
-  font-family: 'Montserrat', sans-serif;
-}
 
 #user-profile-link:hover {
     color: #F38630;
@@ -214,6 +206,12 @@ input:required:invalid, input:focus:invalid {
 .register-link {
   position: relative;
 
+
+}
+
+#register-link a {
+  color: white;
+  font-size: 25px;
 }
 
 .login-link {
@@ -234,6 +232,13 @@ input:required:invalid, input:focus:invalid {
   border: 1px solid black;
 }
 
+.background {
+  background-image: url("http://free.wallpaperbackgrounds.com/earth/sky/25047-22655.jpg");
+  position: relative;
+  top: 140px;
+
+}
+
 footer {
   text-align: center;
   background-color: #E0E4CC;
@@ -243,4 +248,47 @@ footer {
   bottom: -59px;
 }
 
+#user-footer {
+  text-align: center;
+  background-color: #E0E4CC;
+  color: #49B7F2;
+  margin-top: 20px;
+  position: relative;
+  bottom: -215px;
+}
+
+.log-in-header {
+  color: white;
+  font-size: 80px;
+}
+
+.registration-header {
+  color: white;
+  font-size: 3.5em;
+}
+
+#homepage a{
+  color:white;
+    font-size: 30px;
+}
+
+.user-show-page {
+ background-color:#FAFAED
+}
+
+#fav-header {
+  font-size: 40px;
+  positive: relative;
+  margin-top: 25px;
+  margin-bottom: -30px
+}
+
+#login-show-page a {
+  font-size: 26px;
+  font-weight: bold;
+   margin-top: 20px;
+  position: relative;
+  bottom: -200px;
+
+}
 
